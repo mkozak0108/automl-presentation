@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ML is easy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+  <style>
+    #preview-image {
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .image-container {
+      min-height: 250px;
+    }
+
+    #result {
+      color: #7971ea;
+      text-align: center;
+      background-color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #result h1 {
+      color: #7971ea;
+      margin-bottom: 0;
+    }
+
+    .percent {
+      font-family: monospace;
+      font-size: 20px;
+    }
+
+
+    @-webkit-keyframes loader-spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loader-spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    .loader {
+      position: absolute;
+      margin: -18px 0 0 -18px;
+      border: 3.6px solid #fff;
+      box-sizing: border-box;
+      overflow: hidden;
+      width: 36px;
+      height: 36px;
+      left: 50%;
+      top: 50%;
+      animation: loader-spin 2s linear infinite reverse;
+      -webkit-filter: url(#goo);
+      filter: url(#goo);
+      box-shadow: 0 0 0 1px #fff inset;
+    }
+    .loader:before {
+      content: "";
+      position: absolute;
+      -webkit-animation: loader-spin 2s cubic-bezier(0.59, 0.25, 0.4, 0.69) infinite;
+      animation: loader-spin 2s cubic-bezier(0.59, 0.25, 0.4, 0.69) infinite;
+      background: #fff;
+      -webkit-transform-origin: top center;
+      transform-origin: top center;
+      border-radius: 50%;
+      width: 150%;
+      height: 150%;
+      top: 50%;
+      left: -12.5%;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .loader-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.3);
+    }
+
+  </style>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+    <div class="intro-section" id="home-section">
+      
+      <div class="slide-1" style="background-image: url('images/hero_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row justify-content-center">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                  <div class="form-box">
+                    <h1 class="text-black">Try AutoML</h1>
+                    <div class="form-group">
+                      <label>Model</label>
+                      <select id="label-select" class="form-control">
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="file"
+                             id="image-input"
+                             accept="image/png, image/jpeg">
+                      <label for="image-input" class="form-control">Choose a file</label>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="loader-container" style="display: none">
+                        <div class="loader">
+                          <svg>
+                            <defs>
+                              <filter id="goo">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2" result="gooey" />
+                                <feComposite in="SourceGraphic" in2="gooey" operator="atop"/>
+                              </filter>
+                            </defs>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="row justify-content-center image-container align-content-center" style="display: none">
+                        <img id="preview-image" alt="preview-image"/>
+                      </div>
+                      <div id="result"></div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                      <button id="submit" class="btn btn-primary btn-pill">GET PREDICTION</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>
