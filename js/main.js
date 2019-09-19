@@ -24,6 +24,12 @@ $labelSelect.change(() => {
   selectedLabel = $labelSelect.val();
 });
 
+function blobToB64(data) {
+  return btoa(new Uint8Array(data).reduce((data, byte) =>
+    data + String.fromCharCode(byte),
+    ''))
+}
+
 
 $('#submit').click(() => {
   const file = $('#image-input')[0].files[0];
@@ -31,7 +37,7 @@ $('#submit').click(() => {
   const reader = new FileReader();
   reader.onload = function() {
     const arrayBuffer = this.result;
-    const base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
+    const base64String = blobToB64(arrayBuffer);
     getAutoMLPrediction(base64String)
   };
   reader.readAsArrayBuffer(file);
