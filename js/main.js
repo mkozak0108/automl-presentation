@@ -6,7 +6,7 @@ AOS.init({
 
 let selectedLabel = 'apple';
 
-const ACCESS_TOKEN ='ya29.c.ElqIB558uHMpUq5TyAa14W4EBpV_3DAFmJviiH3qwkvfx-PelFKFtoBNJEowVQ5e_igvBfiP8x7NmH30xKEJZbqEQlIu-QRC9aVZhj6VrlDvHo6OlY0fqVx9b9Q';
+const ACCESS_TOKEN ='ya29.c.Kl6IBzmi1zelvxfeZDtA4CN784tiQltntye83SViDsJT94I1LCRpOIaczhiP1m5890SGDi3LjAKz5DkI9AwAA-H1dvNbzozmN2g6h6q6NYdxGJdrf_UKwswRq5G-PfbN';
 
 const SERVICE_URLS = {
   apple: 'https://automl.googleapis.com/v1beta1/projects/seetree-proto/locations/us-central1/models/ICN1440172913436022232:predict',
